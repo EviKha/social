@@ -1,0 +1,18 @@
+.nav{
+grid-area:n;
+background-color: #FFC140;
+padding: 20px;
+}
+
+.navItem {
+  color: white
+}
+
+.navItem a {
+  color : white;
+  text-decoration: none;
+}
+
+.navItem a.active {
+  color : red
+}
