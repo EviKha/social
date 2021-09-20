@@ -2,6 +2,13 @@ import React from 'react';
 import st from './MyPosts.module.css'
 import Post from './Post/Post'
 const MyPosts = () => {
+
+  let postData = [
+    { message: 'Hi! You have!', likeCount: '1000' },
+    { message: 'Turn it up!', likeCount: '333' },
+  ]
+  let postItems = postData.map(p => <Post message={p.message} likeCount={p.likeCount} />)
+
   return (
     <div className={st.postBlock}>
       <h3> My posts</h3>
@@ -12,8 +19,7 @@ const MyPosts = () => {
         <button>Add</button>
       </div>
       < div className={st.posts}>
-        <Post message='Hi! You have!' likeCount='100' />
-        <Post message='Turn it up!' likeCount='10050505' />
+       {postItems}
       </div>
     </div>
   )
