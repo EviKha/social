@@ -16,9 +16,13 @@ let messageData = [
   { text: 'Im fine' },
   { text: 'Bye!' }
 ]
+let postData = [
+  { message: 'Hi! You have!', likeCount: '1000' },
+  { message: 'Turn it up!', likeCount: '333' },
+]
 ReactDOM.render(
   <React.StrictMode>
-    <App dialogData = {dialogData} messageData = {messageData}/>
+    <App dialogData = {dialogData} messageData = {messageData} postData={postData}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
