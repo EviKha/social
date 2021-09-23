@@ -5,7 +5,8 @@ let state = {
         posts: [
             {id:1, message: 'Hi! You have!', likeCount: '1000', img: 'https://www.facebeautyscience.com/wp-content/uploads/2020/04/face-beauty-skin-face2-proc.jpg' },
             {id:2, message: 'Turn it up!', likeCount: '333', img: 'https://www.facebeautyscience.com/wp-content/uploads/2020/04/face-beauty-skin-face2-proc.jpg' },
-        ]
+        ],
+        newPostText : 'HELLOOOOOOO'
     },
     messagesPage: {
         messages: [
@@ -24,15 +25,21 @@ let state = {
 
 
 }
+window.state=state;
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
     let newPost = {
         id: '5',
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likeCount:'0',
         img: 'https://cdn4.buysellads.net/uu/1/41334/1550855391-cc_dark.png'
     }
     state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state);
+
+}
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 
 }
