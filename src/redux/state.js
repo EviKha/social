@@ -1,7 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
-const SEND_MESSAGE = 'SEND-MESSAGE';
+import profileReducer from './profileReducer';
+import messageReducer from './messageReducer';
 
 let store = {
     _state: {
@@ -39,47 +37,15 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: '5',
-                message: this._state.profilePage.newPostText,
-                likeCount: '0',
-                img: 'https://cdn4.buysellads.net/uu/1/41334/1550855391-cc_dark.png'
-            }
-            this._state.profilePage.posts.push(newPost);
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        }
-        else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.messagesPage.newMessageBody = action.messagebody;
-            this._callSubscriber(this._state);
-        }
-        else if (action.type === SEND_MESSAGE) {
-            let messagebody = this._state.messagesPage.newMessageBody;
-            this._state.messagesPage.newMessageBody = '';
-            this._state.messagesPage.messages.push({ id: 6, text: messagebody });
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = messageReducer(this._state.messagesPage, action);
+        this._callSubscriber(this._state);
     }
 
 
 }
-export const addPostActionCreator = () => ({ type: ADD_POST })
 
-export const updateNewPostTextActionCreator = (text) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text
-})
 
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE })
-
-export const updateNewMessageBodyCreator = (messagebody) => ({
-    type: UPDATE_NEW_MESSAGE_BODY,
-    messagebody: messagebody
-})
 
 window.store = store;
 
