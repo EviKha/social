@@ -1,7 +1,14 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+let initialState = {
+    posts: [
+        { id: 1, message: 'Hi! You have!', likeCount: '1000', img: 'https://www.facebeautyscience.com/wp-content/uploads/2020/04/face-beauty-skin-face2-proc.jpg' },
+        { id: 2, message: 'Turn it up!', likeCount: '333', img: 'https://www.facebeautyscience.com/wp-content/uploads/2020/04/face-beauty-skin-face2-proc.jpg' },
+    ],
+    newPostText: 'HELLOOOOOOO'
+};
 
-const profileReducer = (state, action) => {
+const profileReducer = (state=initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {
