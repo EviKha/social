@@ -16,4 +16,4 @@ const DialogsContainer = (props) => {
     return <Dialogs sendMessage = {onSendMessageCLick} newMessage={onNewMessageChange} messagesPage={state}/>
 }
 
-export default DialogsContainer;
+export default DialogsContainer; 
