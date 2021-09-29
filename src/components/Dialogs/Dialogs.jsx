@@ -2,21 +2,20 @@ import React from 'react';
 import st from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog'
 import Message from './Message/Message'
-import { updateNewMessageBodyCreator, sendMessageCreator } from '../../redux/messageReducer';
 const Dialogs = (props) => {
 
-    let state = props.store.getState().messagesPage;
+    let state = props.messagesPage;
 
     let dialogItems = state.dialogs.map(d => <Dialog id={d.id} name={d.name} />)
     let messageItem = state.messages.map(m => <Message text={m.text} />)
     let newMessageBody = state.newMessageBody;
 
     let onSendMessageCLick = () => {
-        props.store.dispatch(sendMessageCreator());
+        props.sendMessage();
     }
     let onNewMessageChange = (e) => {
         let messagebody = e.target.value;
-        props.store.dispatch(updateNewMessageBodyCreator(messagebody));
+        props.newMessage(messagebody);
     }
  
 
