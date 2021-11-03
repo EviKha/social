@@ -8,22 +8,31 @@ let initialState = {
     newPostText: 'HELLOOOOOOO'
 };
 
-const profileReducer = (state=initialState, action) => {
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let newPost = {
                 id: '5',
                 message: state.newPostText,
                 likeCount: '0',
                 img: 'https://cdn4.buysellads.net/uu/1/41334/1550855391-cc_dark.png'
             }
-            state.posts.push(newPost);
-            return state;
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
-        default:
-            return state;
+            let stateCopy = { ...state };
+            stateCopy.posts = [...state.posts];
+            stateCopy.posts.push(newPost);
+            stateCopy.newPostText = '';
+            return stateCopy;
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            let stateCopy = { ...state };
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+        }
+        default: {
+            let stateCopy = { ...state };
+            return stateCopy;
+        }
+
     }
 }
 
