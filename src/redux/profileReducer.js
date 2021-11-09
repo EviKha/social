@@ -17,20 +17,20 @@ const profileReducer = (state = initialState, action) => {
                 likeCount: '0',
                 img: 'https://cdn4.buysellads.net/uu/1/41334/1550855391-cc_dark.png'
             }
-            let stateCopy = { ...state };
-            stateCopy.posts = [...state.posts];
-            stateCopy.posts.push(newPost);
-            stateCopy.newPostText = '';
-            return stateCopy;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            };
         }
         case UPDATE_NEW_POST_TEXT: {
-            let stateCopy = { ...state };
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText
+            };
         }
         default: {
-            let stateCopy = { ...state };
-            return stateCopy;
+            return state;
         }
 
     }
